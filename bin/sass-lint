@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const sassLint = require("sass-lint");
+const formatter = require("eslint/lib/cli-engine/formatters/stylish");
+
+// sass-lint is relying on eslint internal formatters, and since they moved
+// recently it can no longer actually format things, so we have to override the
+// format function with our own formatting logic.
+sassLint.format = (results, options, configPath) => formatter(results);
+
+const configPath = ".sass-lint.yml";
+const options = {
+  files: {},
+  options: { "max-warnings": 0 }
+};
+
+const detects = sassLint.lintFiles(null, options, configPath);
+sassLint.outputResults(detects, options, configPath);
+
+let exitCode = 0;
+if (sassLint.errorCount(detects).count > 0 || sassLint.warningCount(detects).count > 0) {
+  exitCode = 1;
+}
+
+process.on("exit", () => {
+  process.exit(exitCode);
+});

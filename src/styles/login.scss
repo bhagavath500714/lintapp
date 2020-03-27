@@ -1,0 +1,48 @@
+.card {
+
+  &__img {
+    background: #e0466b;
+    display: block;
+    height: 100px;
+    width: 100%;
+  }
+
+  &__content {
+    background: #fff;
+    padding: 5px 0;
+ }
+
+  &__list {
+    display: flex;
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
+ }
+
+  &__item {
+    background: rgb(230, 230, 230);
+    border-radius: 3px;
+    font-size: .85em;
+    margin-right: .5em;
+    padding: .3em .5em;
+
+    &--active {
+      background: #d4d4d4;
+      font-weight: bold;
+ }
+}
+
+  &__link {
+    background: #2c8973;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    margin-top: .5em;
+    padding: .5em 1em;
+    text-decoration: none;
+
+    &:hover {
+      background: #267764;
+    }
+  }
+}
